@@ -20,7 +20,7 @@ This is a Interactable demo combined with ChatGPT and Replicate,and based on Uni
  Step2.运行Unity Hub, 点击“Open”按钮，选择并打开该文件夹。  
  Step3.获取ChatGPT与Replicate的APIkey，分别位于以下网址：https://platform.openai.com/account/api-keys , https://replicate.com/account/api-tokens.  
  Step4.打开Assets/python，将自己的APIkey替换至python脚本“main_positive.py”,"main_neutral.py","main_negative.py"中，ReplicateAPI位于第10行，ChatGPTAPI位于第25行。  
- Step5.在UnityEditor中运行它，绘制你的杰作，截图并让GPT给你评论!
+ Step5.在UnityEditor中运行它，打开Scenes/Technical Creativity,绘制你的杰作，截图并让GPT给你评论!
  
  Step1.Unzip the file to the folder on your computer where the Unity project usually resides.  
  Step2.Run Unity Hub, click the "Open" button, select and open the folder.  
