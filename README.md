@@ -32,7 +32,7 @@ This is a Interactable demo combined with ChatGPT and Replicate,and based on Uni
  由于Replicate,ChatGPT的接口返回值需要时间，因此在进行评论后，需要耐心等待1min左右。  
  Replicate takes time to return the value of the ChatGPT interface, so you need to wait about 1 minute after commenting.  
  
- **Reference**
+ **Reference**  
  ChatGPT: https://platform.openai.com/overview  
  Replicate_image2prompt: https://replicate.com/methexis-inc/img2prompt  
  2D/3D painting: https://assetstore.unity.com/packages/tools/painting/2d-3d-paint-212475
