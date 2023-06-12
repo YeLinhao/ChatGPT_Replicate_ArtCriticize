@@ -1,0 +1,2 @@
+# ChatGPT_Replicate_ArtCriticize
+这是一个结合了ChatGPT与Replicate插件，基于Unity 2D/3D资产，以python编写，能够在unity中运行的对于玩家画图作品进行评价的交互原型
