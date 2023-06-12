@@ -11,4 +11,4 @@
  
  Step4. 打开Assets/python，将自己的APIkey替换至python脚本“main_positive.py”,"main_neutral.py","main_negative.py"中，ReplicateAPI位于第10行，ChatGPTAPI位于第25行。  
  
- Step5. Run it in UnityEditor,make your masterpiece,take a shot and let GPT give you criticize!
+ Step5.在UnityEditor中运行它，绘制你的杰作，截图并让GPT给你评论! Run it in UnityEditor,make your masterpiece,take a screenshot and let GPT give you criticize!
