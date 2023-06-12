@@ -7,13 +7,13 @@ This is a Interactable demo combined with ChatGPT and Replicate,and based on Uni
  More and more games take "player creativity" as the core gameplay, but the system cannot simulate human beings to make reasonable scores and rewards for "creativity". The current solutions are mostly random collation from corpus, resulting in the lack of positive feedback in game links.
 
  **Meaning**  
-1.突破了游戏系统对玩家创意进行评价的限制；
-2.补全了该类游戏的正反馈体验；
+1.突破了游戏系统对玩家创意进行评价的限制；  
+2.补全了该类游戏的正反馈体验；  
 3.GPT结合专业知识的反馈，甚至可以寓教于乐，让玩家真正学习到应该如何画得更好；  
 
-1. Breaking through the limitations of the game system to evaluate player creativity;
-2. Complete the positive feedback experience of this kind of game;
-3.GPT combined with professional knowledge feedback, and even can be entertaining, so that players really learn how to draw better;
+1.Breaking through the limitations of the game system to evaluate player creativity;  
+2.Complete the positive feedback experience of this kind of game;  
+3.GPT combined with professional knowledge feedback, and even can be entertaining, so that players really learn how to draw better;  
  
  **Setup**  
  Step1.解压该文件至您电脑上通常存放Unity工程的文件夹。  Unzip the file to the folder on your computer where the Unity project usually resides.  
