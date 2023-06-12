@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>2D/3D Paint Documentation</title>
+    <meta content="From Ukraine with Love" name="description">
+    <link href="style.css?" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+</head>
+<body>
+<div class="navbar clear">
+    <div class="row content">
+        <a href="#"><img class="logo" src="images/logo.png" alt="2D/3D Paint"></a>
+        <a class="right" href="https://assetstore.unity.com/packages/slug/212475" target="_blank"><i class="book"></i>&nbsp;Asset Store</a>
+        <a class="right" href="mailto:unitymedved@gmail.com" target="_blank"><i class="mail"></i>&nbsp;
+            unitymedved@gmail.com</a>
+    </div>
+</div>
+
+<div class="container clear">
+    <div class="row wrapper">
+        <div class="sidepanel">
+            <a class="title" href="#">Introduction</a>
+            <a class="section" href="#requirements">Requirements</a>
+            <a class="section" href="#howtoupgrade">How do I upgrade?</a>
+            <a class="section" href="#quickstart">Quick Start</a>
+            <a class="section" href="#settings">Settings</a>
+            <a class="section" href="#statessettings">States Settings</a>
+            <div class="divider left"></div>
+            <a class="title" href="#howitworks">How it works</a>
+            <a class="section" href="#generaldescription">General description</a>
+            <a class="section" href="#paintmodes">Paint Modes</a>
+            <a class="section" href="#painting">Painting</a>
+            <a class="section" href="#brush">Brush</a>
+            <a class="section" href="#undoredo">Undo/Redo</a>
+            <a class="section" href="#input">Input</a>
+            <a class="section" href="#raycast">Raycast</a>
+            <div class="divider left"></div>
+            <a class="title" href="#tools">Tools</a>
+            <a class="section" href="#brushesandpresets">Brushes and Presets</a>
+            <a class="section" href="#howtoaddnewbrush">How to add a new brush?</a>
+            <div class="divider left"></div>
+            <a class="title" href="#layersandblengindmodes">Layers and Blending Modes</a>
+            <a class="section" href="#layerscontainer">Layers Container</a>
+            <a class="section" href="#masks">Masks</a>
+            <a class="section" href="#howtolayers">How to work with layer?</a>
+            <div class="divider left"></div>
+            <a class="title" href="#apihelp">API Help</a>
+            <a class="section" href="#paintcontroller">PaintController</a>
+            <a class="section" href="#inputcontroller">InputController</a>
+            <a class="section" href="#raycastcontroller">RaycastController</a>
+            <a class="section" href="#paintmanager">PaintManager</a>
+            <a class="section" href="#basepaintobject">BasePaintObject</a>
+            <a class="section" href="#statescontroller">StatesController</a>
+            <a class="section" href="#layerscontroller">LayersController</a>
+            <a class="section" href="#layer">Layer</a>
+            <a class="section" href="#paint">Paint</a>
+            <a class="section" href="#brushclass">Brush</a>
+            <a class="section" href="#toolsmanager">ToolsManager</a>
+            <a class="section" href="#basepainttool">BasePaintTool</a>
+            <a class="section" href="#averagecolorcalculator">AverageColorCalculator</a>
+            <a class="section" href="#colliderpainter">ColliderPainter</a>
+            <div class="divider left"></div>
+            <a class="title" href="#frequentlyusedmethods">Frequently used methods</a>
+            <a class="section" href="#saveresulttexture">Save result texture</a>
+            <a class="section" href="#loadfromtexture">Load from texture</a>
+            <a class="section" href="#addnewlayer">Add a new layer</a>
+            <a class="section" href="#removelayer">Remove layer</a>
+            <a class="section" href="#drawfromcode">Drawing from code</a>
+            <a class="section" href="#paintmanagerfromcode">Creating PaintManager from code</a>
+            <a class="section" href="#vrsupport">VR Support</a>
+            <div class="divider left"></div>
+            <a class="title" href="#tips">Tips</a>
+            <div class="divider left"></div>
+            <a class="title" href="#contacts">Contacts</a>
+            <div class="space double"></div>
+        </div>
+
+        <div class="right-col">
+
+            <h1>Introduction</h1>
+            <p>&emsp;«2D/3D Paint» - a universal solution for Unity that allows to paint on 2D and 3D objects!
+                You can also create a modern paint app with incredible features and outstanding performance!<br>
+                &emsp;You need to add a prefab, one component, and configure a few parameters to use an asset!
+                With «2D/3D Paint» you will be able to paint on 2D and 3D components such as
+                <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a> and
+                <a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-RawImage.html" target="_blank">RawImage</a>.<br>
+            &emsp;Asset supports <a href="https://docs.unity3d.com/Manual/built-in-render-pipeline.html" target="_blank">Standard</a>, <a href="https://docs.unity3d.com/Manual/universal-render-pipeline.html" target="_blank">URP</a>, and
+                <a href="https://docs.unity3d.com/Manual/high-definition-render-pipeline.html" target="_blank">HDRP</a> pipelines, works with <a href="https://docs.unity3d.com/Manual/class-InputManager.html" target="_blank">Input Manager (Old)</a>
+                and <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.3/manual/index.html" target="_blank">Input System Package (New)</a>.
+                It also works with custom shaders and with VR. No need to add any colliders for painting.</p>
+
+            <h2 id="requirements">Requirements</h2>
+            <p>&emsp;For the correct work, «2D/3D Paint» requires:</p>
+            <li>Unity 2019.4 or newer;</li>
+            <li>GameObject with supported component: <a
+                    href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html"
+                   target="_blank">SpriteRenderer</a> or <a
+                        href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-RawImage.html"
+                        target="_blank">RawImage</a> with material.
+            </li>
+            <li>If you are using the <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a> or
+                <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a> component, make sure that their model has a UV map.<br>
+                &emsp;Unity can do it for you if your model doesn't have a UV map. To generate a UV-map, enable <a href="https://docs.unity3d.com/Manual/LightingGiUvs-GeneratingLightmappingUVs.html" target="_blank">Generate Lightmap UVs</a>
+                in the model settings. Generated UV map will be stored in the second UV channel. Ensure that your shader works with it, as most default Unity shaders only support the first UV channel.
+                Your UV data shouldn't have overlapping areas (no mirroring) to get the best results. I recommend creating a UV map in a 3D modeling program to get better results.
+            </li>
+
+            <h2 id="howtoupgrade">How do I upgrade?</h2>
+            <p>&emsp;First, back up your project.<br>
+                Next, <a href="https://docs.unity3d.com/Manual/upm-ui-update2.html" target="_blank">update the asset</a> to the latest from Asset Store using Package Manager (Windows -> Package
+                Manager).<br>
+                The asset has a comparison list of APIs that were changed from the last release. To check it, open the <a href="https://unitymedved.bitbucket.io/XDPaint/3.0/Docs/v.3.0_API_Changes.pdf" target="_blank"><span class="path">v.3.0_API_Changes.pdf</span></a> file.<br>
+                If you have any issues or errors, contact me. I'll be happy to help!
+            </p>
+
+            <h2 id="quickstart">Quick Start</h2>
+            <p>&emsp;Add a prefab to the scene from path <span class="path">Assets/XDPaint/Prefabs/[XDPaintContainer].prefab</span>. This prefab contains
+                singleton components, let’s look at the parameters of the PaintController component:
+                <img class="center" src="images/paintContainer.png" alt="PaintController" onload="this.width/=2;"></p>
+            <ul>
+                <li><span class="path">Override Camera</span>  - set the camera for the <span class="component">InputController</span> and
+                    <span class="component">RaycastController</span> objects, singleton objects. If unchecked,
+                    <a href="https://docs.unity3d.com/ScriptReference/Camera-main.html" target="_blank">Camera.main</a> will be used;</li>
+                <li><span class="path">Use Shared Settings</span> - whether to use settings of <span class="component">PaintController</span> (Brush, Paint Tool, and Paint
+                    Mode) for all <span class="component">PaintManager</span> instances;
+                </li>
+                <li><span class="path">Paint Tool</span> - selected tool. Supported tools:</li>
+                <ul><li>Brush - brush tool for painting on the texture;</li>
+                <li>Erase - erase tool;</li>
+                <li>Eyedropper - eyedropper tool for picking the color of the brush;</li>
+                <li>BrushSampler - tool for sampling brush texture;</li>
+                <li>Clone - tool for cloning parts of the texture;</li>
+                <li>Blur - tool for blurring parts of the texture;</li>
+                <li>GaussianBlur - tool for blurring parts of the texture;</li>
+                <li>Grayscale - tool for discolorating parts of the texture.</li></ul>
+            </ul>
+            <ul><li><span class="path">Paint Mode</span> - mode of painting can be Default or Additive. Default mode bakes draw results into
+                Layer Texture each frame, Additive mode provides more accurate color and alpha blending, renders lines
+                into Input Texture and bakes draw results in Layer Texture on Mouse Up event;
+            </li>
+                <li><span class="path">Preset</span> - brush preset saved in <span class="path">Assets/XDPaint/Resources/XDPaintBrushPresets.asset</span>.
+                    It stores brushes with different parameters to easily switch between them. See Brush and Presets paragraph for details.
+            </li></ul>
+            &emsp;Brush Parameters:<br>
+            <ul>
+                <li><span class="path">Name</span> - name of the brush, must be unique;</li>
+                <li><span class="path">Source Texture</span> - brush texture. When you add a new brush, make sure that «<a href="https://docs.unity3d.com/ScriptReference/TextureWrapMode.html" target="_blank">Wrap Mode</a>»
+                    is set as «<a href="https://docs.unity3d.com/ScriptReference/TextureWrapMode.Clamp.html" target="_blank">Clamp</a>» in the settings of the brush texture;
+                </li>
+                <li><span class="path">Filter Mode</span> - <a href="https://docs.unity3d.com/ScriptReference/FilterMode.html" target="_blank">FilterMode</a>
+                    for brush <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>;</li>
+                <li><span class="path">Color</span> - brush color;</li>
+                <li><span class="path">Size</span> - brush size;</li>
+                <li><span class="path">Hardness</span> - brush hardness. Rounds brush when a value is less than 1;</li>
+                <li><span class="path">Render Angle</span> - brush render angle in degrees;</li>
+                <li><span class="path">Preview</span> - to show a preview of the brush while the user hovers over the object to be painted;</li>
+            </ul>
+            &emsp;After that, create the GameObject with the <mark>PaintManager</mark> component using the Unity menu «GameObject ->
+            2D/3D Paint», or add the <mark>PaintManager</mark> component to your GameObject.<br>
+            Then select the GameObject to paint in the <span class="path">Object For Painting</span> field. The object to paint must
+            contain one of the supported components:<br>
+            <li><a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a></li>
+            <li><a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a></li>
+            <li><a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a></li>
+            <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-RawImage.html" target="_blank">RawImage</a></li>
+            &emsp;If any child of <mark>PaintManager</mark> GameObject contains an object with one of the supported
+            components, it can automatically assign it to the <span class="path">Object For Painting</span> field by clicking on the <span class="button">Auto
+            Fill</span> button:<br>
+
+            <img class="center" src="images/autoFillButton.png" alt="Auto Fill Button" onload="this.width/=2;"><br>
+
+            &emsp;After clicking on the <span class="button">Auto Fill</span> button, the <span class="path">Object For Painting</span> field will be filled in when one
+            of the supported components is found:<br>
+
+            <img class="center" src="images/paintManager.png" alt="PaintManager component" onload="this.width/=2;"><br>
+
+            &emsp;If the material or paint object cannot be found automatically, make sure that there is a
+            GameObject with the supported component among the child objects, otherwise, <span class="path">Object For Painting</span> and
+            <span class="path">Material</span> can be assigned manually.<br>
+            &emsp;Other component settings will appear if <span class="path">Object For Painting</span> and
+            <span class="path">Material</span> have values. Consider the
+            existing settings:
+            <ul>
+                <li><span class="path">Object For Painting</span> - GameObject for painting, must contain one of the supported components;
+                </li>
+                <li><span class="path">Material</span> - the material of the object whose texture field (Shader Texture Name) will be used for drawing;
+                </li>
+                <li><span class="path">Shader Texture Name</span> - the name of the material texture on which it will perform the painting;
+                </li>
+                <li><span class="path">Texture Width</span> - the default texture width is used for objects that do not have the
+                    source texture;
+                </li>
+                <li><span class="path">Texture Height</span> - the default texture height is used for objects that do not have the
+                    source texture;
+                </li>
+                <li><span class="path">Paint Mode</span> - mode of painting: default or additive;</li>
+                <li><span class="path">Filter Mode</span> - <a href="https://docs.unity3d.com/ScriptReference/FilterMode.html" target="_blank">FilterMode</a> for painting RenderTextures;</li>
+                <li><span class="path">Override Camera</span> - asset overrides the camera to determine the intersection of the ray with
+                    triangles and to work with user input. If the flag is set to false, the camera is obtained from the
+                    Camera.main;
+                </li>
+                <li><span class="path">Camera</span> - camera for determining ray intersections with the triangles and for working with user input;
+                </li>
+                <li><span class="path">Copy Source Texture To Layer</span> - copy source texture from material to new layer;
+                </li>
+                <li><span class="path">Use Source Texture as Background Layer</span> - copy source texture from material to background layer;
+                </li>
+                <li><span class="path">Use Neighbors Vertices For Raycasts</span> - asset uses neighboring vertices to find the intersection
+                    of rays with triangles while lines are drawing. If the flag is unchecked, the results of the calculations
+                    can be inaccurate with non-convex objects. When we are using objects with many
+                    vertices, the performance of searching the intersection of rays with triangles is degrading. I recommend setting the flag as true.
+                    After setting a flag a window opens with confirmation:
+                </li>
+            </ul>
+
+            <img class="center" src="images/trianglesData.png" alt="Triangles Data" onload="this.width/=2;"><br>
+
+            After pressing <span class="button">Fill triangles data</span> progress bar shows while filling in the progress. Wait until it finishes
+            searching all neighboring triangles, then the window will be closed, the drawing lines will work properly. You can
+            save generated triangles data to <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>
+            using <span class="button">Save Triangles Data to Asset</span> button;
+            <ul>
+                <li><span class="path">Triangles Container</span> - link to TrianglesContainer <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>, may be empty - in that
+                    case triangles data will be stored in component field;
+                </li>
+                <li><span class="path">Paint Tool</span> - painting tool, if <mark>PaintController</mark> has checked <span class="path">Use Shared Settings</span> flag,
+                    the tool from <mark>PaintController</mark> will be used as Paint Tool for all PaintManagers;
+                </li>
+                <li><span class="path">Brush</span> - brush parameters. When selected «Custom» - <mark>PaintManager</mark> has unique brush parameters.
+                    You can select a ready-to-use preset of the brush from the list. Note that if <mark>PaintController</mark> has the flag
+                    <span class="path">Use Shared Settings</span>, brush parameters will be used from <mark>PaintController</mark>;
+                </li>
+                <li><span class="path">Layers Container</span> - a reference to the <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>
+                    of LayersContainer, that contains information about layers, their textures, and parameters. Used for loading previously saved layers.
+                </li>
+                <li><span class="button">Clone Material</span> - button to copy the source material of the object to the new file, can be used only in the Unity Editor;
+                </li>
+                <li><span class="button">Clone Texture</span> - button to copy the source texture of the object to the new file, can be used only in the Unity Editor;
+                </li>
+                <li><span class="button">Undo</span> - button to undo action with the object;</li>
+                <li><span class="button">Redo</span> - button to redo action with the object;<br></li>
+                <li><span class="button">Bake</span> - button to save the painting results to the source file. Note that texture is stored in RAM and is not written on the disk;
+                </li>
+                <li><span class="button">Save Texture</span> - button to save the texture of the painting results to the file, can only be used in the Unity Editor;
+                </li>
+                <li><span class="button">Save Layers</span> - button to save layers data to <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>.
+                </li>
+            </ul>
+            Let's set up the object to paint on the emission texture:
+            <img class="center" src="images/paintManager2.png" alt="Set _EmissionMap texture for painting" onload="this.width/=2;"><br>
+            &emsp;The texture of shader with the name «_EmissionMap» is selected. After switching to the game mode, the user will
+            be able to paint on the object «LightHouse». The material and the source texture «_EmissionMap» will be
+            cloned, <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> will be assigned as the new texture. Users can use input devices for painting: a
+            computer mouse, touch device, pen (tablet stylus), or VR controller.<br>
+
+            <h2 id="settings">Settings</h2>
+            &emsp;«2D/3D Paint» has global settings. The configuration file is located at:
+            <span class="path">Assets/XDPaint/Resources/XDPaintSettings.asset</span>. The settings file is <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>.<br>
+            Consider the fields in the settings file:
+            <img class="center" src="images/settings.png" alt="Settings" onload="this.width/=2;">
+            <ul>
+                <li><span class="path">Default Brush</span> - default brush texture;</li>
+                <li><span class="path">Default Circle Brush</span> - default brush texture for BrushSampler/Clone tools;</li>
+                <li><span class="path">Is VR Mode</span> - whether to use VR input;</li>
+                <li><span class="path">Pressure Enabled</span> - pressure force is applied to the brush size;</li>
+                <li><span class="path">Check Canvas Raycasts</span> - prevent painting on components if any other canvas component lies above the paint object.
+                    This also requires setting InputController settings: Canvas and Ignore For
+                    Raycasts (optional) fields;
+                </li>
+                <li><span class="path">Brush Duplicate Part Width</span> - the width of the duplicated part of the brush, the value affects
+                    the number of vertices and smoothness of the line while lines are drawing. The higher the value, the
+                    less the number of vertices will be drawn;
+                </li>
+                <li><span class="path">Pixel Per Unit</span> - <a href="https://docs.unity3d.com/ScriptReference/Sprite-pixelsPerUnit.html" target="_blank">pixelPerUnit</a> field for sprites. Used for objects that do not have the
+                    source sprite;
+                </li>
+                <li><span class="path">Container Game Object Name</span> - the name of the GameObject, for the container object with
+                    InputController and RaycastController components;
+                </li>
+            </ul>
+
+            <h2 id="statessettings">States Settings</h2>
+            &emsp;«2D/3D Paint» has undo/redo system and its setting which is called «States Settings». The configuration file is located at:
+            <span class="path">Assets/XDPaint/Resources/XDPaintStatesSettings.asset</span>. The settings file is <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>.<br>
+            Consider the fields in the settings file:
+            <img class="center" src="images/statesSettings.png" alt="States settings" onload="this.width/=2;">
+            <ul>
+                <li><span class="path">Undo Redo Enabled</span> - undo and redo functionality is enabled. If the application doesn't have undo/redo functionality, it is recommended to turn this flag off to reduce memory usage;</li>
+                <li><span class="path">Enable Undo Redo For Properties And Actions</span> - save undo/redo actions to change layer parameters such as opacity, blending mode, name, layer index, etc. If this flag is disabled, only layers RenderTextures will be saved on actions performed;</li>
+                <li><span class="path">Undo Redo Max Actions Count</span> - the maximum amount of actions that store undo/redo;</li>
+            </ul>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="howitworks">How it works</h1>
+            <h2 id="generaldescription">General description</h2>
+            <p>&emsp;«2D/3D Paint» clones the source material and replaces the source texture with the <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>.
+                The asset passes input data from <mark>InputController</mark> to <mark>BasePaintObject</mark> to calculate UV coordinates to determine the position of the
+                painting on the texture. When the user interacts with the input, for example, by moving a finger on the touch device, the asset gets the UV position of the previous frame and position of the UV in the current frame. Using two UV-positions, the asset draws brush N-times on the layer texture.
+                The painting takes place on the previously created <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> (Layer) and is stored in GPU memory, which provides high performance.
+            </p>
+
+            <h2 id="paintmodes">Paint Modes</h2>
+            <p>
+                &emsp;The asset has two paint modes: Default and Additive. Default mode bakes draw results into Paint Texture each
+                frame, Additive mode provides more accurate color and alpha blending, bakes draw results in Input Texture
+                and bakes it into Layer Texture on Mouse Up event.
+            </p>
+            <div class="images">
+                <img class="center2" src="images/defaultMode.png" alt="DefaultMode" onload="this.width/=1.5;">
+                <img class="center2" src="images/additiveMode.png" alt="AdditiveMode" onload="this.width/=1.5;"></div>
+
+            <h2 id="painting">Painting</h2>
+            <p>&emsp;«2D/3D Paint» creates a <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> (<a href="https://docs.unity3d.com/ScriptReference/RenderTextureFormat.ARGB32.html" target="_blank">ARGB32</a> format) for each Layer. The size of the <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> is
+                equal to the size of the source texture. If there is no source texture, the size for <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> will
+                be taken from the <span class="path">PaintManager.Material</span> settings (<span class="path">DefaultTextureWidth</span> and
+                <span class="path">DefaultTextureHeight</span> fields). For objects such as <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>
+                and <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a>, the asset uses
+                ray-surface intersection to determine the intersection of the model triangle with the ray. The use of
+                models with many vertices can lead to performance loss. Finding and using neighboring triangles for raycasts was implemented to solve this issue.<br>
+                &emsp;«2D/3D Paint» creates <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> for each <mark>PaintManager</mark>:</p>
+            <ul><li><span class="path">Active Layer Texture</span> - texture of the layer, as there must be at least one layer for painting;</li>
+                <li><span class="path">Active Layer Temp Texture</span> (only in Additive Paint Mode) - temp texture of the current layer, used for painting;</li>
+                <li><span class="path">Input Texture</span> - store user drawing results for the current
+                    frame (in case the user uses Default Paint Mode) or drawing results from mouse down event to mouse up
+                    event (in case the user uses Additive Paint Mode);</li>
+                <li><span class="path">Combined Texture</span> - textures that contain combined active layers;</li>
+                <li><span class="path">Combined Temp Texture</span> - temp texture containing combined active layers (used with two or more Layers or brush preview enabled).</li>
+            </ul>
+                <p><span class="path">Active Layer Texture</span> and <span class="path">Active Layer Temp Texture</span> are used for painting,
+                    <span class="path">Input Texture</span> blends into <span class="path">Active Layer Texture</span> /
+                    <span class="path">Active Layer Temp Texture</span>.<br>
+                    <span class="path">Combined Texture</span> / <span class="path">Combined Temp Texture</span> - represents the current drawing results and preview of the brush.<br>
+                    Depending on the selected tool, the count of RenderTextures may vary.</p>
+
+            <h2 id="brush">Brush</h2>
+            <p>
+                &emsp;A brush is a texture that renders into <span class="path">Active Layer Texture</span> using brush parameters. When a user changes brush
+                parameters like <span class="path">Texture</span>, <span class="path">Opacity</span>, <span class="path">Color</span>, or
+                <span class="path">Hardness</span>, the brush invokes the Render method that renders the brush into <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>.<br>
+                &emsp;Brush size value means that brush source texture will be scaled by that value. If you have a brush texture of 100x100px and brush size 0.5, your brush texture will be 50x50px.<br>
+                &emsp;Displaying brush size on an image depends on brush texture size, brush size value and source image size. When a user draws a dot with the brush of 100x100px with a brush scale of 1 on a layer of 1000x1000px,
+                it will fit 10% of the layer width/height.
+            </p>
+
+            <h2 id="undoredo">Undo/Redo</h2>
+            <p>
+                &emsp;«2D/3D Paint» has undoing/redoing functionality that stores layers data changes. It can store layer texture changes (save every OnMouseUp event)
+                and layer parameters changes such as name, index, opacity, etc (optional). Note that after layer texture change (paintning on the layer), its state will be saved as texture and consume memory. For example, using a 1024x1024 texture will take 4MB (32 bytes per pixel). Undo/redo functionality can be turned off or limited using <a class="section" href="#statessettings">States Settings</a>.
+            </p>
+
+            <h2 id="input">Input</h2>
+            <p>
+                &emsp;«2D/3D Paint» processes input using the <mark>InputController</mark> class. Asset supports <a href="https://docs.unity3d.com/Manual/class-InputManager.html" target="_blank">Input Manager (Old)</a>
+                and <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.3/manual/index.html" target="_blank">Input System Package (New)</a>. Input can work with the mouse, touch device, pen (tablet stylus like Apple Pen) or VR controller.
+            </p>
+
+            <h2 id="raycast">Raycast</h2>
+            <p>
+                &emsp;For <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>
+                and <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a> objects, finding the intersection of the ray with the
+                triangle is used to calculate the UV coordinates. These calculations are performed on the CPU, the time
+                of which depends on the number of vertices of the model. To avoid high CPU loads, it should be
+                noted that the more vertices the model contains, the more CPU time it will take to find the
+                intersection.<br>
+                &emsp;To optimize the calculations and drawing lines, a method was added based on the data on neighboring triangles.
+                In order to draw a line from triangle «A» to triangle «B» the asset uses neighbor's triangles data to find
+                the entry and exit positions of the triangles. This method significantly improves performance for
+                objects with many vertices, but can draw a line with inaccuracy for non-convex objects,
+                because it does not check data about other triangles that may lie «closer» to the camera and close the
+                verifiable (neighboring) vertices.
+            </p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="tools">Tools</h1>
+            <p>&emsp;Tool - is an instrument for processing layer texture when the user paints on it. The asset has 8 built-in tools: brush,
+            erase, eyedropper, brush sampler, clone, blur, gaussian blur, and grayscale tool. User can switch between tools
+                to get different drawing results. Let’s look at tools functional:</p>
+            <ul>
+                <li><b>Brush</b> - default tool for painting. Tool parameters:</li>
+                <ul>
+                    <li><u>Can Paint Lines</u> - whether to paint lines. If this flag is disabled, only dots will be used for painting;</li>
+                    <li><u>Draw On Brush Move Only</u> - render brush only when a user moves the input source (mouse, finger, pen, etc.).</li>
+                </ul>
+                <li><b>Erase</b> - erase layer texture using the brush, opposite for drawing;</li>
+                <li><b>Eyedropper</b> - pick a color and set it as a brush color. Tool parameters:</li>
+                <ul>
+                    <li><u>Use All Active Layers</u> - use all layers for color picking. If disabled, only an active layer will be used;</li>
+                    <li><u>Sample Alpha</u> - whether to sample pixels alpha.</li>
+                </ul>
+                <li><b>BrushSampler</b> - copies a part of the drawing area to a brush texture;</li>
+                <li><b>Clone</b> - tool for cloning parts of the texture. Clone tool works the same way as Photoshop
+                    or any other painting software. The first click on the object will take the starting position of cloning,
+                    all follow-up clicks will clone parts of texture. Note that the clone tool works in UV-space. Tool parameters:</li>
+                <ul>
+                    <li><u>Copy Texture On Press Down</u> - whether to copy source texture on press down;</li>
+                    <li><u>Use All Active Layers</u> - use all active layers for cloning. If disabled only active layer will be used.</li>
+                </ul>
+                <li><b>Blur</b> - tool for blurring parts of the texture. Blur implementation using a simplified Gaussian
+                    blur algorithm that works in two Shader Passes and can be configured to change blur strength. Blur
+                    tool has such parameters:
+                </li>
+                <ul>
+                    <li><u>Iterations</u> - iterations count for blurring. A higher value means strengthening the blur. It is recommended to use parameters in a range of 1 to 5.
+                        A higher value also means that the blur will use more GPU resources and the draw call count will be increased (two draw calls per iteration);</li>
+                    <li><u>BlurStrength</u> - the strength of the blur. Zero means minimal blur, higher value - strengthen blur;</li>
+                    <li><u>DownscaleRatio</u> - value for the number of times to downscale the texture size for blurring;</li>
+                    <li><u>Use All Active Layers</u> - use all active layers for blurring. If disabled only the active layer will be used.</li>
+                </ul>
+                <li><b>Gaussian Blur</b> - tool for blurring parts of the texture. Blur implementation using Gaussian
+                    blur algorithm works in one Shader Pass and can be configured to change blur strength. Blur
+                    tool has such parameters:
+                </li>
+                <ul>
+                    <li><u>Kernel size</u> - iterations count for blurring, a higher value means strengthening the blur. Recommended to use parameters ranging from 3 to 7;</li>
+                    <li><u>Spread</u> - the spread of blur. Zero means minimal blur, higher value - strengthen blur. Recommended to use parameters in the range from 0 to 5;</li>
+                    <li><u>Use All Active Layers</u> - use all active layers for blurring. If disabled only the active layer will be used.</li>
+                </ul>
+                <li><b>Grayscale</b> - tool for layer texture discoloration. The area above the brush discolors when a user draws with the grayscale tool (saturation set to 0).
+                </li>
+            </ul>
+
+            <h2 id="brushesandpresets">Brushes and Presets</h2>
+            <p>&emsp;The asset has a preset system that stores brush parameters in <a
+                    href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>,
+                which allows them to be reused with <mark>PaintManagers</mark>/<mark>PaintController</mark>. Presets located in the file at: <span class="path">Assets/XDPaint/Resources/XDPaintBrushPresets.asset</span>.
+                You can save brush parameters by name and apply them to other objects from the list. If you change
+                the non-custom parameters of brush in <mark>PaintManager</mark>/<mark>PaintController</mark> inspector window, data won’t be written
+                to Presets automatically.<br>
+                &emsp;Asset have built-in presets that can be reused or modified. Presets can be re-saved using
+                <mark>PaintController</mark>/<mark>PaintManager</mark> Inspector window or changed by selecting <span class="path">XDPaintBrushPresets</span> asset
+                in Project window and editing in Inspector window.<br></p>
+
+                <div class="images">
+                <img class="center2" src="images/brushes.png" alt="Brushes" onload="this.width/=2;">
+                <img class="center2" src="images/brushpresets.png" alt="BrushPreset" onload="this.width/=2;"></div>
+
+            <p>&emsp;Preset can be re-saved to a new preset, for this click on <span class="button">Save As</span> button.<br>
+                Preset can be renamed, for this click on <span class="button">Rename</span> button and choose a new name and click on
+                <span class="button">Save</span> button.<br>
+                &emsp;Preset can be removed, for this click on <span class="button">Remove</span> button and confirm it using the dialogue box.<br>
+            You can use one brush parameters for all PaintManagers, for that check <span class="path">Use Shared Settings</span> in
+                <mark>PaintController</mark>, otherwise, each <mark>PaintManager</mark> will have unique brush parameters.</p>
+
+            <img class="center" src="images/paintControllerBrush.png" alt="PaintController brush" onload="this.width/=2;"><br>
+
+            <h2 id="howtoaddnewbrush">How to add a new brush?</h2>
+            <p>&emsp;To add a new brush, select <span class="path">[XDPaintContainer]</span> GameObject in Hierarchy tab, then in Inspector tab set a unique brush name,
+            select brush texture, and brush parameters, and save it as preset using <span class="button">Save As</span> button. It also works the same way in
+                <mark>PaintManager</mark> component.<br>
+            &emsp;A new brush will be added to Brush Presets (<span class="path">XDPaintBrushPresets.asset</span>) and can be chosen in
+                <mark>PaintController</mark>/<mark>PaintManager</mark> components.</p>
+            <img class="center" src="images/newBrush.gif" alt="New brush" onload="this.width/=1.5;">
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="layersandblengindmodes">Layers and Blending Modes</h1>
+            <span class="justified">&emsp;«2D/3D Paint» supports work with layers and blending modes. Each layer represents <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> that can be used for painting. Layers are used to perform tasks such as compositing multiple images. Note that each layer consumes memory. For example, using a 1024x1024 texture will take 4MB (32 bytes per pixel).
+                The blending mode defines how a given layer blends with the layers below it.<br>
+                &emsp;Asset supports the following blending modes:<br>
+        <li><span class="path">Normal</span> - opaque pixels will cover the pixels directly below them without applying any math or algorithm applied to them. You can, of course, reduce the opacity of the layer to reveal the pixels below;<br>
+        <li><span class="path">Darken</span> - Darken Blending Mode looks at the luminance values in each of the RGB channels and selects either the base color or blend color depending on which is darker. Simply put, this Blending Mode does not blend pixels, it only compares the base and blends colors, and it keeps the darkest of the two. If the blend layer and the base layer color are the same, then there is no change;<br>
+        <li><span class="path">Multiply</span> - multiplies the luminosity of the base color by the blend color. The resulting color is always a darker color. White produces no change, while black pixels remain;<br>This Blending Mode multiplies the luminosity of the base color by the blend color. The resulting color is always a darker color. White produces no change, while the black pixels remain.<br>
+        <li><span class="path">ColorBurn</span> - this mode gives you a darker result than <span class="path">Multiply</span> by increasing the contrast between the base and the blend colors resulting in more highly saturated mid-tones and reduced highlights.<br>Color Burn Blending Mode gives you a darker result than <span class="path">Multiply</span> by increasing the contrast between the base and the blend colors resulting in more highly saturated mid-tones and reduced highlights.<br>
+        <li><span class="path">LinearBurn</span> - decreases the brightness of the base color based on the value of the blend color. The result is darker than <span class="path">Multiply</span> but less saturated than <span class="path">Color Burn</span>.<br>
+        <li><span class="path">DarkerColor</span> - this Blending Mode does not blend pixels. It only compares the base and blends colors, and it keeps the darkest of the two.<br>
+        <li><span class="path">Lighten</span> - this mode takes a look at the base color and blends color, and it keeps whichever one of the two is the lightest. If the blend colors and the base colors are the same, then no change is applied.<br>
+        <li><span class="path">Screen</span> - the resulting color is always a brighter color. Black produces no change, while the brighter pixels remain.<br>
+        <li><span class="path">ColorDodge</span> - gives you a brighter effect than <span class="path">Screen</span> by decreasing the contrast between the base and the blend colors, resulting in saturated mid-tones and blown highlights.<br>Color Dodge Blending Mode gives you a brighter effect than <span class="path">Screen</span> by decreasing the contrast between the base and the blend colors, resulting in saturated mid-tones and blown highlights.<br>
+        <li><span class="path">LinearDodge</span> - this Blending Mode looks at the color information in each channel and brightens the base color to reflect the blend color by increasing the brightness. Blending with black produces no change.<br>
+        <li><span class="path">LighterColor</span> - this Blending Mode does not blend pixels. It only compares the base and blends colors, and it keeps the brightest of the two.<br>
+        <li><span class="path">Overlay</span> - is a combination of <span class="path">Multiply</span> and <span class="path">Screen</span> with the base layer always shining through. <span class="path">Overlay</span> uses the <span class="path">Screen</span> Blending Mode at half strength on colors lighter than 50% gray. And the <span class="path">Multiply</span> Blending Mode at half strength on colors darker than 50% gray. 50% gray itself becomes transparent.<br>
+        <li><span class="path">SoftLight</span> - it applies either a darkening or lightening effect depending on the luminance values, but in a much more subtle way.<br>
+        <li><span class="path">HardLight</span> - combines the <span class="path">Multiply</span> and <span class="path">Screen</span> Blending Modes using the brightness values of the Blend layer to make its calculations. <span class="path">Overlay</span> uses the base layer.<br>
+        <li><span class="path">VividLight</span> - anything darker than 50% gray is darkened, and anything lighter than 50% gray is <span class="path">Lighten</span>.<br>
+        <li><span class="path">LinearLight</span> - it uses a combination of <span class="path">Linear Dodge</span> Blending on lighter pixels and a <span class="path">Linear Burn</span> on darker pixels.<br>
+        <li><span class="path">PinLight</span> - it is an extreme Blending Mode that performs <span class="path">Darken</span> and <span class="path">Lighten</span> Blending Mode simultaneously. It can result in patches or blotches, and it completely removes all mid-tones.<br>
+        <li><span class="path">HardMix</span> - this applies the blend by adding the value of each RGB channel into the blend layer to the corresponding RGB channel in the base layer.<br>
+        The resulting image loses a lot of detail, and the colors can only be black, white, or any of the six primary colors. Red, green, blue, cyan, magenta, or yellow.<br>
+        <li><span class="path">Difference</span> - this mode uses the difference of the base and blend pixels as the resulting blend. White inverts the colors of the base layer.<br>
+        <li><span class="path">Exclusion</span> - is very similar to <span class="path">Difference</span>. Blending with white inverts the base color values, while blending with black produces no change. However, Blending with 50% gray produces 50% gray.<br>
+        <li><span class="path">Subtract</span> - subtracts pixel values from the base layer. This Blending Mode drastically darkens pixels by subtracting brightness.<br>
+        Black has no effect. Only as the blend values get brighter, does the result get darker.<br>
+        <li><span class="path">Divide</span> - produces the opposite effect as <span class="path">Subtract</span>. White has no effect. Only as the blend values get darker, does the result get brighter.<br>
+        <li><span class="path">Hue</span> - preserves the luminosity and saturation of the base pixels while adopting the hue of the blend pixels.<br>
+        <span class="path">Hue</span> can be used to change hues in a layer while maintaining the tones and saturation of the original.<br>
+        <li><span class="path">Saturation</span> - preserves the luminosity and hue of the base layer while adopting the saturation of the blend layer.<br>
+        A black-and-white blend layer also turns the image into grayscale because none of the pixels in the luminosity layer have saturation.<br>
+        <li><span class="path">Color</span> - preserves the luminosity of the base layer while adopting the hue and saturation of the blend layer. <span class="path">Color</span> is the ideal Blending Mode for coloring monochromatic images.<br>Also, <span class="path">Color</span>, along with the <span class="path">Luminosity</span> Blending Mode, is the second pair of Commuted Blending Modes.<br>
+        <li><span class="path">Luminosity</span> - preserves the hue and saturation of the base layer while adopting the luminosity of the blend layer.</li></span>
+
+            <h2 id="layerscontainer">Layers Container</h2>
+            <p>&emsp;Layers Data (layers textures and their parameters) can be stored in <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a> which is called LayersContainer.<br>
+                LayersContainer contains all data about layers that <mark>PaintManager</mark> has: layers textures, names, opacity, blending options, masks data, and layers order.
+                To save layers data to LayersContainer, you can use <span class="button">Save Layers</span> button in <mark>PaintManager</mark> component:<br>
+
+                <img class="center" src="images/saveLayers.png" alt="Save layers" onload="this.width/=2;">
+            <p>After choosing the path, layers data will be saved to LayersContainer asset, layers textures will be saved to the asset folder automatically.
+            LayersContainer asset has an array of LayerData that contains all layers parameters (right part of the image).</p>
+                <img class="center" src="images/layersContainer.png" alt="LayerContainer" onload="this.width/=2;">
+            <p>&emsp;If <mark>PaintManager</mark> has a reference to LayersContainer asset in <span class="path">LayersContainer</span> field, during initialization, it will load layers from the asset:</p>
+                <img class="center" src="images/saveLayers2.png" alt="Loaded layers" onload="this.width/=2;">
+
+            <h2 id="masks">Masks</h2>
+            <p>&emsp;Asset supports layers masks. Applying masks to a layer is a reversible way to hide part of a layer.
+                This method allows for more editing flexibility instead of permanently erasing or deleting part of a layer.<br>
+                &emsp;Mask in asset represents <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> in <a href="https://docs.unity3d.com/ScriptReference/RenderTextureFormat.R8.html" target="_blank">R8</a>
+                format and can be created/set from code or by setting the reference to the <mask class="path">Mask Texture</mask> in
+                <mask class="path">LayersContainer</mask>.
+            </p>
+
+            <div class="images">
+                <img class="center2" src="images/mask.png" alt="Mask texture" onload="this.width/=2.5;">
+                <img class="center2" src="images/mask2.png" alt="Mask texture" onload="this.width/=2.5;">
+            </div><br>
+            <img class="center" src="images/mask3.png" alt="Mask result" onload="this.width/=2.5;">
+
+            <h2 id="howtolayers">How to work with layers?</h2>
+            <p>PaintManager component has buttons to handle layers:</p>
+            <ul>
+                <li>To add a new layer, click on <span class="button">Add Layer</span> button;</li>
+                <li>To remove the active layer, click on <span class="button">Remove Layer</span> button;</li>
+                <li>To remove the active layer mask, click on <span class="button">Remove Layer Mask</span> button;</li>
+                <li>To merge the active layer with the layer below, click on <span class="button">Merge Layers</span> button;</li>
+                <li>To merge all active layers into the active layer, click on <span class="button">Merge All Layers</span> button;</li>
+                <li>To switch to the active layer, click on <span class="button">Set Next Active</span> button. You can switch to an active layer by clicking on the drag area on the left part of the layer UI;</li>
+                <li>To change the layer's order, drag and drop the left layer area up or down:</li>
+            </ul>
+            <img class="center" src="images/layers.gif" alt="Layers" onload="this.width/=1.5;">
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="apihelp">API Help</h1>
+            <h2 id="paintcontroller">PaintController</h2>
+            <p>&emsp;Class singleton that stores all <mark>PaintManagers</mark>. Use shared settings for all PaintManagers when the flag <span class="path">Use Shared Settings</span> is checked.
+                Otherwise, each <mark>PaintManager</mark> will use its own settings.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public bool UseSharedSettings</code> - whether to use settings of <mark>PaintController</mark> (<span class="path">Brush</span>,
+                <span class="path">PaintMode</span> and <span class="path">Tool</span>) for all <mark>PaintManagers</mark>;<br>
+                <code>public PaintMode PaintMode { … }</code> - paint mode;<br>
+                <code>public PaintTool Tool { … }</code> - current tool;<br>
+                <code>public Brush Brush { … }</code> - return brush instance;<br>
+                <code>public void RegisterPaintManager(PaintManager paintManager)</code> - register <mark>PaintManager</mark>;<br>
+                <code>public void UnRegisterPaintManager(PaintManager paintManager)</code> - unregister <mark>PaintManager</mark>;<br>
+                <code>public IPaintMode GetPaintMode(PaintMode mode)</code> - return instance of paint mode;<br>
+                <code>public PaintManager[] ActivePaintManagers()</code> - return active <mark>PaintManagers</mark>;<br>
+                <code>public PaintManager[] AllPaintManagers()</code> - return all registered <mark>PaintManagers</mark>.<br>
+            </p>
+
+            <h2 id="inputcontroller">InputController</h2>
+            <p>&emsp;Class singleton is a component for user input management.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public bool IsVRMode</code> - whether to use VR mode instead of Mouse / Touch input;<br>
+                <code>public Transform HandTransform</code> - Transform of Hand for painting, used for VR device;<br>
+                <code>public Canvas Canvas</code> - <mark>Canvas</mark> to ignore raycasts (children objects of <mark>Canvas</mark> will prevent painting);<br>
+                <code>public GameObject[] IgnoreForRaycasts</code> - GameObjects to ignore raycasts (children objects of <mark>Canvas</mark> that won't prevent painting);<br>
+                <code>public Camera Camera { … }</code> - camera property used for user input and raycasts;<br>
+                <code>public event Action OnUpdate</code> - on input update;<br>
+                <code>public event Action&lt;Vector3&gt; OnMouseHover</code> - mouse hover event on objects;<br>
+                <code>public event Action&lt;Vector3, float&gt; OnMouseDown</code> - left mouse click event on objects;<br>
+                <code>public event Action&lt;Vector3, float&gt; OnMouseButton</code> - left mouse button pressing event on objects;<br>
+                <code>public event Action&lt;Vector3&gt; OnMouseUp</code> - event of releasing the left key of the mouse.
+            </p>
+
+            <h2 id="raycastcontroller">RaycastController</h2>
+            <p>&emsp;Class singleton is a controller for data checks of ray intersections with the triangles and the
+                keeper of the data about all available objects to make a raycast checks.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public Camera Camera { … }</code> - property of the camera, used for raycasts;<br>
+                <code>public void InitObject(Camera newCamera, Component paintComponent, Component renderComponent, int uvChannel,
+                    Triangle[] triangles)</code> - initializes a new mesh object;<br>
+                <code>public void DestroyMeshData(Component renderComponent)</code> - destroys previously created mesh
+                data for raycasts;<br>
+                <code>public void Raycast(Ray ray, out Triangle triangle)</code> - check the intersection of the ray
+                with the triangles objects, will return the result to out Triangle triangle;<br>
+                <code>public void RaycastLocal(Ray ray, Transform objectTransform, out Triangle triangle)</code> -
+                check the intersection of the ray with the triangles of the Transform objectTransform, will return the result to out Triangle triangle;<br>
+                <code>public void NeighborsRaycast(Triangle triangle, Ray ray, out Triangle outTriangle)</code> - check
+                the intersection of the ray with the neighboring triangles of Triangle triangle, will return the result to out Triangle outTriangle.
+            </p>
+
+            <h2 id="paintmanager">PaintManager</h2>
+            <p>&emsp;The manager for the paint object. It combines the main component for painting on objects,
+                containing instances of Paint, BasePaintObject.<br>
+                Main events, fields, properties and methods:<br>
+                <code>public event Action&lt;PaintManager&gt; OnInitialized</code> - event of initialization finish, returns
+                <mark>PaintManager</mark> instance;<br>
+                <code>public event Action OnDisposed</code> - event of the resources disposed of <span class="path">PaintManager</span>;<br>
+                <code>public GameObject ObjectForPainting</code> - GameObject of the object to be painted;<br>
+                <code>public bool OverrideCamera</code> - override the camera;<br>
+                <code>public Camera Camera { … }</code> - property of the camera;<br>
+                <code>public FilterMode FilterMode { ... }</code> - property of the <a href="https://docs.unity3d.com/ScriptReference/FilterMode.html" target="_blank">FilterMode</a> of RenderTextures;<br>
+                <code>public Brush Brush { ... }</code> - property of the brush of <mark>PaintManager</mark>;<br>
+                <code>public ToolsManager ToolsManager { ... }</code> - property of the ToolsManager, contains and manages all
+                the tools for painting;<br>
+                <code>public PaintTool Tool { ... }</code> - property of the current paint tool;<br>
+                <code>public BasePaintObject PaintObject { … }</code> - property of the painted object;<br>
+                <code>public IStatesController StatesController { … }</code> - StatesController instance;<br>
+                <code>public bool UseSourceTextureAsBackground { … }</code> - property of using source texture as
+                background texture for the resulting image;<br>
+                <code>public bool UseNeighborsVerticesForRaycasts { … }</code> - property of using neighbors vertices
+                for raycasts when drawing lines;<br>
+                <code>public bool HasTrianglesData { … }</code> - whether component contains any triangles data;<br>
+                <code>public bool Initialized { … }</code> - property of the initialization status of the object;<br>
+                <code>public int SubMesh { … }</code> - property of the <a href="https://docs.unity3d.com/ScriptReference/Mesh-subMeshCount.html" target="_blank">sub mesh</a>
+                of the <span class="path">PaintObject</span> mesh;<br>
+                <code>public int UVChannel { … }</code> - property of the <a href="https://docs.unity3d.com/ScriptReference/Mesh.GetUVs.html" target="_blank">UV-channel</a>
+                of the mesh;<br>
+                <code>public void Init()</code> - initialize <mark>PaintManager</mark>. If <mark>PaintManger</mark> was initialized before, it
+                will re-create its internal data: RenderTextures, Meshes and Materials;<br>
+                <code>public void DoDispose()</code> - destroy all <mark>PaintManager</mark> created RenderTextures, Meshes and
+                Materials, restores source material and texture;<br>
+                <code>public void Render()</code> - invoke object rendering;<br>
+                <code>public void SetPaintMode(PaintMode paintMode)</code> - set paint mode;<br>
+                <code>public IPaintMode GetPaintMode()</code> - return paint mode instance;<br>
+                <code>public void FillTrianglesData(bool fillNeighbors = true)</code> - fill model data, argument - to
+                fill data about neighbors triangles;<br>
+                <code>public void ClearTrianglesData()</code> - remove filled information about triangles;<br>
+                <code>public void ClearTrianglesNeighborsData()</code> - remove filled information about the
+                neighboring triangles;<br>
+                <code>public void GetTriangles()</code> - return triangles array;<br>
+                <code>public void SetTriangles(Triangle[] trianglesData)</code> - set triangles data directly from code
+                using array of Triangles;<br>
+                <code>public void SetTriangles(TrianglesContainer trianglesContainerData)</code> - set triangles data
+                directly from code using TrianglesContainer <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>;<br>
+                <code>public RenderTexture GetPaintTexture()</code> - return <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> of combined texture of painting;<br>
+                <code>public RenderTexture GetPaintInputTexture()</code> - return <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> of input (current frame
+                dot/line for Default PaintMode or texture that was drawn between mouse down and mouse up events for
+                Additive PaintMode);<br>
+                <code>public RenderTexture GetResultRenderTexture()</code> - return result <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> (combined layers);<br>
+                <code>public Texture2D GetResultTexture(bool hideBrushPreview = false)</code> - return the resulting texture (combined layers), argument - whether to hide brush preview;<br>
+                <code>public SetLayersData (LayersContainer container)</code> - set layers data;<br>
+                <code>public LayerData[] GetLayersData()</code> - return current layers data;<br>
+                <code>public void InitBrush()</code> - initialize brush settings.
+            </p>
+
+            <h2 id="basepaintobject">BasePaintObject</h2>
+            <p>&emsp;Base class for painting on <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>. It can be declared as CanvasRendererPaint,
+                MeshRendererPaint, or SpriteRendererPaint. The derived classes CanvasRendererPaint, MeshRendererPaint,
+                and SpriteRendererPaint contain logic to check the painting position based on the data from the
+                <mark>InputController</mark> and return the UV texture position for further work according to the base class
+                logic.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public event Action&lt;Vector3, Vector2, Vector2, Vector2, float&gt; OnMouseHoverHandler</code> - mouse hover event, used by ToolsManager. Arguments: paint object local position, screen position, UV position, texture position, pressure;<br>
+                <code>public event Action&lt;Vector3, Vector2, Vector2, Vector2, float&gt; OnMouseDownHandler</code> - mouse down event, used by ToolsManager. Arguments: paint object local position, screen position, UV position, texture position, pressure;<br>
+                <code>public event Action&lt;Vector3, Vector2, Vector2, Vector2, float&gt; OnMouseHandler</code> - mouse press event, used by ToolsManager. Arguments: paint object local position, screen position, UV position, texture position, pressure<br>
+                <code>public event Action&lt;Vector2, bool&gt; OnMouseUpHandler</code> - mouse up event, used by ToolsManager. Arguments: screen position, is mouse in object bounds;<br>
+                <code>public event Action&lt;Vector2, float&gt; OnDrawPointHandler</code> - draw point event, can be used by the developer to obtain data about painting. Arguments: texture position, pressure;<br>
+                <code>public event Action&lt;Vector2, Vector2, float, float&gt; OnDrawLineHandler</code> - draw line event, can be used by the developer to obtain data about painting. Arguments: line start texture position, line end texture position, line start pressure, line end pressure;<br>
+                <code>public bool IsPainting { … }</code> - property, whether user is painting;<br>
+                <code>public bool IsPainted { … }</code> - property, whether user is painting (in current frame vertices were drawn);<br>
+                <code>public bool ProcessInput</code> - whether input processing for current paint object;<br>
+                <code>public new Camera Camera { … }</code> - camera property used to determine the position of the painting on the texture;<br>
+                <code>public void Init(Camera camera, Transform objectTransform, Paint paint, IRenderTextureHelper renderTextureHelper, IStatesController statesController)</code> - initialization of the object;<br>
+                <code>public void DoDispose()</code> - destroy previously created RenderTextures and Meshes;<br>
+                <code>public void OnMouseHover(Vector3 position, Triangle triangle = null)</code> - on mouse hover method;<br>
+                <code>public void OnMouseDown(Vector3 position, float pressure = 1f, Triangle triangle = null)</code> - on mouse down method;<br>
+                <code>public void OnMouseButton(Vector3 position, float pressure = 1f, Triangle triangle = null)</code> - on mouse button method;<br>
+                <code>public Vector2? GetPaintPosition(Vector3 position, Triangle triangle = null)</code> - return paint position from screen position if ray intersects an object;<br>
+                <code>public void OnMouseUp(Vector3 position)</code> - on mouse up method;<br>
+                <code>public void DrawPoint(Vector2 position, float pressure = 1f)</code> - draw point from code using texture position;<br>
+                <code>public void DrawLine(Vector2 positionStart, Vector2 positionEnd, float pressureStart = 1f, float pressureEnd = 1f)</code> - draw line from code using texture positions;<br>
+                <code>public void FinishPainting()</code> - force end painting;<br>
+                <code>public void OnRender()</code> - render to combined <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>;<br>
+                <code>public void Render()</code> - combine all RenderTextures to Combined RenderTexture;<br>
+                <code>public void ClearTexture(bool writeToUndo = false)</code> - clear the texture to paint, to display changed data call paintManager.Render() method;<br>
+                <code>public void RenderToTextureWithoutPreview()</code> - render to Combined Render Texture without brush preview.
+            </p>
+
+            <h2 id="statescontroller">StatesController</h2>
+            <p>&emsp;A class that manages states of undo/redo. Contains and manages changed data, the previous object states.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public int ChangesCount { ... }</code> - changes count;<br>
+                <code>public event Action&lt;RenderTexture&gt; OnClearTextureAction</code> - event for <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> clear action;<br>
+                <code>public event Action OnRenderTextureAction</code> - event for <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> undo/redo, invokes object render;<br>
+                <code>public event Action OnChangeState</code> - event to undo/redo;<br>
+                <code>public event Action OnResetState</code> - event to undo, used to clear Input Texture;<br>
+                <code>public event Action OnUndo</code> - event to undo action performed;<br>
+                <code>public event Action OnRedo</code> - event to redo action performed;<br>
+                <code>public event Action&lt;bool&gt; OnUndoStatusChanged</code> - event to undo status change, returns flag that user can perform undo action;<br>
+                <code>public event Action&lt;bool&gt; OnRedoStatusChanged</code> - event to redo status change, returns flag that user can perform redo action;<br>
+                <code>public void DoDispose()</code> - destroy state data;<br>
+                <code>public void Enable()</code> - enable undo/redo functionality;<br>
+                <code>public void Disable()</code> - disable undo/redo functionality;<br>
+                <code>public void AddState(Action action)</code> - add action as a state;<br>
+                <code>public void AddState(object entity, string property, <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> oldValue, <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> newValue, Texture source)</code> - add <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> changes states;<br>
+                <code>public void AddState(object entity, string property, object oldValue, object newValue)</code> - add property change state;<br>
+                <code>public void AddState(IList collection, NotifyCollectionChangedEventArgs rawEventArg)</code> - add list change state;<br>
+                <code>public void Undo()</code> - undo action;<br>
+                <code>public void Redo()</code> - redo action;<br>
+                <code>public int GetUndoActionsCount()</code> - return count of undo actions;<br>
+                <code>public int GetRedoActionsCount()</code> - return count of redo actions;<br>
+                <code>public bool CanUndo()</code> - return if user can undo action;<br>
+                <code>public bool CanRedo()</code> - return if user can redo action;<br>
+                <code>public void EnableGrouping()</code> - enable grouping of the actions. All actions will be recorded as one action until DisableGrouping() is invoked;<br>
+                <code>public void DisableGrouping()</code> - disable grouping of the actions.</p><br>
+
+            <h2 id="layerscontroller">LayersController</h2>
+            <p>&emsp;A class that contains layers instances and manages them.<br>
+            <u>Main public fields, properties, and methods:</u><br>
+            <code>public event Action&lt;ObservableCollection&lt;ILayer&gt;, NotifyCollectionChangedEventArgs&gt; OnLayersCollectionChanged</code> - event on layers collection changed;<br>
+            <code>public event Action&lt;ILayer&gt; OnLayerChanged</code> - event for layer OnRenderPropertyChanged action, used for Render object after layer parameters changed;<br>
+            <code>public event Action&lt;ILayer&gt; OnActiveLayerSwitched</code> - event to change active layer index;<br>
+            <code>public event Action&lt;bool&gt; OnCanRemoveLayer</code> - event to get flag is layer can be removed, as asset requires at least one layer for painting;<br>
+            <code>public ReadOnlyCollection&lt;ILayer&gt; Layers { ... }</code> - layers collection;<br>
+            <code>public ILayer ActiveLayer { ... }</code> - instance of active layer;<br>
+            <code>public bool CanDisableLayer { ... }</code> - can disable layer or not, used to prevent disabling all layers;<br>
+            <code>public bool CanRemoveLayer { ... }</code> - can remove the active layer, used to prevent the removal of the last layer;<br>
+            <code>public bool CanMergeLayers { ... }</code> - can merge layers. Check if the active layer and layer below are enabled;<br>
+            <code>public bool CanMergeAllLayers { ... }</code> - can merge all layers. Check if the active layer and at least one different layer is enabled;<br>
+            <code>public int ActiveLayerIndex { ... }</code> - active layer index;<br>
+            <code>public void DoDispose()</code> - release all layers data;<br>
+            <code>public void Init(Texture sourceTexture)</code> - initialize layers;<br>
+            <code>public void CreateBaseLayers(Texture sourceTexture, bool useSourceTextureAsBackground)</code> - create default layers using source texture;<br>
+            <code>public void SetFilterMode(FilterMode mode)</code> - set filter mode for layers textures;<br>
+            <code>public ILayer AddNewLayer()</code> - create a new layer;<br>
+            <code>public ILayer AddNewLayer(string name)</code> - create a new layer with name;<br>
+            <code>public ILayer AddNewLayer(string name, Texture sourceTexture)</code> - create a new layer with the name from the source texture;<br>
+            <code>public void AddLayerMask(ILayer layer, Texture source)</code> - create a layer mask using source texture;<br>
+            <code>public void AddLayerMask(ILayer layer)</code> - create a layer mask;<br>
+            <code>public void AddLayerMask(Texture source)</code> - create a layer mask for the active layer using the source texture;<br>
+            <code>public void AddLayerMask()</code> - create a layer mask for the active layer;<br>
+            <code>public void RemoveActiveLayerMask()</code> - remove active layer mask;<br>
+            <code>public ILayer GetActiveLayer()</code> - return active layer;<br>
+            <code>public void SetActiveLayer(ILayer layer)</code> - set layer as active;<br>
+            <code>public void SetActiveLayer(int index)</code> - set active layer by layer index;<br>
+            <code>public void SetLayerOrder(ILayer layer, int index)</code> - set layer order;<br>
+            <code>public void RemoveActiveLayer()</code> - remove active layer;<br>
+            <code>public void RemoveLayer(ILayer layer)</code> - remove layer;<br>
+            <code>public void RemoveLayer(int index)</code> - remove layer by index;<br>
+            <code>public void MergeLayers()</code> - merge the active layer with the layer below into the layer below. Invokes when the active layer and layer below are enabled;<br>
+            <code>public void MergeAllLayers()</code> - merge all enabled layers into an active layer. Invokes when at least 2 layers are enabled;<br>
+            <code>public void SetLayerTexture(int index, Texture texture)</code> - set layer texture.</p><br>
+
+            <h2 id="layer">Layer</h2>
+            <p>&emsp;A class that contains and manages layer data.<br>
+            <u>Main public fields, properties, and methods:</u><br>
+            <code>public event Action&lt;ILayer&gt; OnLayerChanged</code> - event for layer properties change;<br>
+            <code>public Action&lt;Layer&gt; OnRenderPropertyChanged</code> - event for layer properties change. Invokes when any of the properties that affect the rendering layer are changed;<br>
+            <code>public bool Enabled { ... }</code> - enable flag of layer;<br>
+            <code>public bool CanBeDisabled { ... }</code> - return flag is layer can be disabled;<br>
+            <code>public bool MaskEnabled { ... }</code> - enable flag for mask;<br>
+            <code>public string Name { ... }</code> - layer name;<br>
+            <code>public float Opacity { ... }</code> - opacity value of the layer;<br>
+            <code>public Texture SourceTexture { ... }</code> - layer source texture;<br>
+            <code>public RenderTexture RenderTexture { ... }</code> - layer render texture;<br>
+            <code>public RenderTargetIdentifier RenderTarget { ... }</code> - render texture identifier;<br>
+            <code>public Texture MaskSourceTexture { ... }</code> - mask source texture;<br>
+            <code>public RenderTexture MaskRenderTexture { ... }</code> - mask render texture;<br>
+            <code>public RenderTargetIdentifier MaskRenderTarget { ... }</code> - mask render texture identifier;<br>
+            <code>public BlendingMode BlendingMode { ... }</code> - layer blending mode;<br>
+            <code>public void Create(string layerName, int width, int height, RenderTextureFormat format, FilterMode filterMode)</code> - create layer render texture;<br>
+            <code>public void Create(string layerName, Texture source, RenderTextureFormat format, FilterMode filterMode)</code> - create layer render texture;<br>
+            <code>public void Init(CommandBufferBuilder bufferBuilder, Func&lt;bool&gt; canDisableLayer)</code> - initialize layer;<br>
+            <code>public void AddMask(RenderTextureFormat format)</code> - create layer mask;<br>
+            <code>public void AddMask(Texture maskTexture, RenderTextureFormat format)</code> - create a layer mask based on texture;<br>
+            <code>public void RemoveMask()</code> - remove layer mask;<br>
+            <code>public void SaveState()</code> - save layer render texture using StatesController;<br>
+            <code>public void DoDispose()</code> - release layer data.</p><br>
+
+            <h2 id="paint">Paint</h2>
+            <p>&emsp;A class that stores and manages painting material data and its parameters.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public Material Material { … }</code> - paint material;<br>
+                <code>public string ShaderTextureName { … }</code> - shader texture name for painting;<br>
+                <code>public int DefaultTextureWidth { … }</code> - texture width, in case the object doesn't have a source texture;<br>
+                <code>public int DefaultTextureHeight { … }</code> - texture height, in case the object doesn't have a source texture;<br>
+                <code>public int MaterialIndex { … }</code> - index of material in the object;<br>
+                <code>public Texture SourceTexture { … }</code> - source texture;<br>
+                <code>public void Init(IRenderComponentsHelper renderComponentsHelper)</code> - paint material initialization;<br>
+                <code>public void DoDispose()</code> - destroy previously created materials;<br>
+                <code>public void RestoreTexture()</code> - set source texture to material;<br>
+                <code>public void SetObjectMaterialTexture(Texture texture)</code> - set new texture of the object;<br>
+                <code>public void SetPreviewTexture(Texture texture)</code> - set preview texture;<br>
+                <code>public void SetPaintTexture(Texture texture)</code> - set Layer texture to material;<br>
+                <code>public void SetInputTexture(Texture texture)</code> - set Input texture to material;<br>
+                <code>public void SetPaintPreviewVector(Vector4 brushOffset)</code> - set data to display brush preview.
+            </p>
+
+            <h2 id="brushclass">Brush</h2>
+            <p>&emsp;A class that stores and manages brush material data and its parameters.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public string Name { … }</code> - brush name, must be unique;<br>
+                <code>public Material Material { … }</code> - brush material;<br>
+                <code>public FilterMode FilterMode { … }</code> - <a href="https://docs.unity3d.com/ScriptReference/FilterMode.html" target="_blank">FilterMode</a> of the <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> of the brush;<br>
+                <code>public Color Color { … }</code> - brush color;<br>
+                <code>public Texture SourceTexture { … }</code> - source texture of the brush;<br>
+                <code>public RenderTexture RenderTexture { … }</code> - render texture of the brush;<br>
+                <code>public float MinSize { … }</code> - minimal size of the brush;<br>
+                <code>public float Size { … }</code> - brush size;<br>
+                <code>public float RenderAngle { … }</code> - brush render angle in degrees;<br>
+                <code>public Quaternion RenderQuaternion { … }</code> - brush render quaternion;<br>
+                <code>public float Hardness { … }</code> - brush hardness;<br>
+                <code>public bool Preview { … }</code> - brush preview;<br>
+                <code>public event Action&lt;Color&gt; OnColorChanged;</code> - event of changing the brush color;<br>
+                <code>public event Action&lt;Texture&gt; OnTextureChanged;</code> - event of changing the texture of the brush;<br>
+                <code>public event Action&lt;bool&gt; OnPreviewChanged;</code> - event of changing preview flag of the brush;<br>
+                <code>public void Init(IPaintMode mode)</code> - initialize the brush Material, Mesh and RenderTexture;<br>
+                <code>public void DoDispose()</code> - destroy previously created <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>, Mesh and Material;<br>
+                <code>public void SetValues(Brush brush)</code> - set values for the brush from the other brush;<br>
+                <code>public void Render()</code> - render brush into <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>;<br>
+                <code>public void RenderFromTexture(Texture texture)</code> - render brush from texture without changing <span class="path">SourceTexture</span>;<br>
+                <code>public void SetColor(Color colorValue, bool render = true, bool sendToEvent = true)</code> - set the brush color;<br>
+                <code>public void SetTexture(Texture texture, bool render = true, bool sendToEvent = true, bool canUpdateRenderTexture = true)</code> - set the brush texture;<br>
+                <code>public void SetPaintTool(PaintTool paintTool)</code> - set current tools for changing shader params;<br>
+                <code>public void SetPaintMode(IPaintMode mode)</code> - set paint mode.
+            </p>
+
+            <h2 id="toolsmanager">ToolsManager</h2>
+            <p>&emsp;A class that contains and manages all tools.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public IPaintTool CurrentTool</code> - return current tool;<br>
+                <code>public void Init(PaintManager paintManager)</code> - initialize for <mark>PaintManager</mark>, subscribe for
+                <mark>PaintManager</mark> events;<br>
+                <code>public void DoDispose()</code> - release tools resources;<br>
+                <code>public void SetTool(PaintTool paintTool)</code> - set tool.<br>
+            </p>
+
+            <h2 id="basepainttool">BasePaintTool</h2>
+            <p>&emsp;Base class for every tool. Handles the layer texture using input events from <mark>PaintManager</mark>.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public virtual PaintTool Type { … }</code> - tool type;<br>
+                <code>protected IPaintData Data</code> - data that the tool has to process an image. Used to get information about layers, RenderTextures, Brush, painting states;<br>
+                <code>public virtual bool ShowPreview { … }</code> - whether to show preview or not;<br>
+                <code>public virtual bool RenderToLayer { … }</code> - whether to render to Layer Texture result;<br>
+                <code>public virtual bool RenderToInput { … }</code> - whether to render to Input Texture result;<br>
+                <code>public virtual bool AllowRender { … }</code> - whether to allow any render or not;<br>
+                <code>public virtual bool CanDrawLines { … }</code> - whether to draw lines or not. If this flag is disabled, the user can only draw dots;<br>
+                <code>public virtual bool ConsiderPreviousPosition { … }</code> - whether to render brush if previous paint position wasn't changed;<br>
+                <code>public virtual bool RenderToTextures { … }</code> - whether to render to any RenderTextures;<br>
+                <code>public virtual bool DrawPreProcess { … }</code> - whether to draw pre process data or not;<br>
+                <code>public virtual bool DrawProcess { … }</code> - whether to draw process data or not;<br>
+                <code>public virtual bool BakeInputToPaint { … }</code> - whether to bake Input texture to Layer texture or not;<br>
+                <code>public bool CanPaintLines</code> - whether to draw lines. If this flag is disabled, the user can only draw dots;<br>
+                <code>public bool DrawOnBrushMoveOnly</code> - whether to render brush if previous paint position wasn't changed.<br>
+                <code>public bool FillWithColor(Color color)</code> - fill active layer with color;<br>
+                <code>public virtual void OnDrawPreProcess(RenderTargetIdentifier combined)</code> - draw a preprocess method for changing texture before layers are combined into Combined texture;<br>
+                <code>public virtual void OnDrawProcess(RenderTargetIdentifier combined)</code> - draw method for combining layers into Combined texture;<br>
+                &emsp;Tools parameters can be displayed in the Inspector tab if they have <b>[PaintToolProperty]</b> attribute:<br>
+                <img class="center" src="images/toolParams.png" alt="Tools" onload="this.width/=2;">
+            </p>
+
+            <h2 id="averagecolorcalculator">AverageColorCalculator</h2>
+            <p>&emsp;A component to get an average color of texture.<br>
+                <u>Main public fields and methods:</u><br>
+                <code>public PaintManager PaintManager</code> - PaintManager to get the average color;<br>
+                <code>public PaintRenderTexture PaintRenderTexture</code> - texture to check average color;<br>
+                <code>public bool SkipTransparentPixels</code> - whether to skip source texture transparent pixels;<br>
+                <code>public event Action&lt;Color&gt; OnGetAverageColor</code> - event to get the average color. Invokes when the
+                user paints;<br>
+                <code>public void SetAccuracy(int accuracy)</code> - set sampling accuracy.<br>
+                &emsp;AverageColorCalculator gets an average color using the shader «XD Paint/Average Color» that samples
+                texture. There are two parameters: main texture and accuracy - divider to get samples count. Smaller
+                quantity means better accuracy, and as a result - more GPU resources will be used. As an example, if
+                texture has size 2048x1024 and accuracy has a value of 64, it will sample texture 2048 / 64 = 32 times per
+                horizontal x 1024 / 64 = 16 times per vertical, in sum 32 x 16 = 512 samples. All of this works with GPU,
+                which provides the best performance.
+            </p>
+
+            <h2 id="colliderpainter">ColliderPainter</h2>
+            <p>&emsp;A component to paint on <span class="path">PaintObject</span> using collisions.
+                This component gets UV-position on OnCollisionEnter and OnCollisionStay and paints on the object using the brush.<br>
+                To use this component, add it to an object that will collide with the <span class="path">PaintObject</span>.<br>
+                <u>Main public fields and methods:</u><br>
+                <code>public event Action&lt;PaintManager&gt;, Collision> OnCollide</code> - event to get  painting information, first argument -
+                <mark>PaintManager</mark> for painting, second - <a href="https://docs.unity3d.com/ScriptReference/Collision.html" target="_blank">Collision</a> data;<br>
+                <code>public Color Color</code> - color of painting;<br>
+                <code>public float Pressure</code> - ratio to scale brush size on painting;<br>
+            </p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="frequentlyusedmethods">Frequently used methods</h1>
+            <p>Check if you can undo/redo:
+                <span class="codequote">paintManager.StatesController.CanUndo();
+paintManager.StatesController.CanRedo();</span>
+                Subscribe to change state events:<br>
+                <span class="codequote">paintManager.StatesController.OnUndoStatusChanged += OnUndoStatusChanged;
+paintManager.StatesController.OnRedoStatusChanged += OnRedoStatusChanged;
+
+private void OnUndoStatusChanged(bool canUndo)
+{
+    Debug.Log("Can undo: " + canUndo);
+}
+
+private void OnRedoStatusChanged(bool canRedo)
+{
+    Debug.Log("Can redo: " + canRedo);
+}
+</span><br>
+                Undo/Redo action:<br>
+                <span class="codequote">paintManager.StatesController.Undo();
+paintManager.StatesController.Redo();</span><br>
+                Remove undo/redo states:<br>
+                <span class="codequote">paintManager.StatesController.DoDispose();</span><br>
+                Render (repaint) object:<br>
+                <span class="codequote">paintManager.Render();</span><br>
+                Set default texture size for objects without source texture:<br>
+                <span class="codequote">paintManager.Material.DefaultTextureWidth = …;
+paintManager.Material.DefaultTextureHeight = …;</span><br>
+                Fill layer texture with a color (in this case, the layer texture will be cleared):<br>
+                <span class="codequote">paintManager.Tool = PaintTool.Brush;
+paintManager.ToolsManager.CurrentTool.FillWithColor(Color.clear);
+paintManager.Render();</span><br>
+                Set brush size:<br>
+                <span class="codequote">paintManager.Brush.Size = value;</span><br>
+                Set brush hardness:<br>
+                <span class="codequote">paintManager.Brush.Hardness = value;</span><br>
+                Change brush color:<br>
+                <span class="codequote">var brushColor = paintManager.Brush.Color;
+brushColor = new Color(color.r, color.g, color.b, brushColor.a);
+paintManager.Brush.SetColor(brushColor);</span><br>
+                Set brush opacity:<br>
+                <span class="codequote">var color = paintManager.Brush.Color;
+color.a = value;
+paintManager.Brush.SetColor(color);</span><br>
+                Set brush angle:<br>
+                <span class="codequote">paintManager.Brush.RenderAngle = value;</span><br>
+                Change tool:<br>
+                <span class="codequote">if (PaintController.Instance.UseSharedSettings)
+{
+	<span class="comment">//in case when PaintController has checked UseSharedSettings</span>
+	PaintController.Instance.Tool = PaintTool...;
+}
+else
+{
+	<span class="comment">//otherwise:</span>
+	paintManager.Tool = PaintTool...;
+}</span><br>
+                Set blur tool parameters:<br>
+                <span class="codequote">var blurTool = paintManager.ToolsManager.CurrentTool as BlurTool;
+if (blurTool != null)
+{
+	blurTool.Iterations = 3;
+	blurTool.BlurStrength = 2f;
+	blurTool.DownscaleRatio = 1;
+}</span><br>
+                Set gaussian blur tool parameters:<br>
+                <span class="codequote">var gaussianBlurTool = paintManager.ToolsManager.CurrentTool as GaussianBlurTool;
+if (gaussianBlurTool != null)
+{
+	gaussianBlurTool.KernelSize = 3;
+	gaussianBlurTool.Spread = 5f;
+}</span><br>
+                Enable/Disable input for all <mark>PaintManagers</mark>:<br>
+                <span class="codequote">InputController.Instance.enabled = value;</span><br>
+                Enable/Disable input for <mark>PaintManager</mark> instance:<br>
+                <span class="codequote">paintManager.PaintObject.ProcessInput = value;</span><br>
+                Getting the average color of PaintManager:<br>
+                <span class="codequote">public AverageColorCalculator AverageColorCalculator;
+…
+AverageColorCalculator.OnGetAverageColor += color => Debug.Log("Average Color: " + color);</span><br>
+                Save painting result to file:<br>
+                <span class="codequote">var path = … ; <span class="comment">//path for texture</span>
+var texture2D = paintManager.GetResultTexture();
+var pngData = texture2D.EncodeToPNG();
+if (pngData != null)
+{
+	File.WriteAllBytes(path, pngData);
+}</span><br></p>
+
+            <h2 id="saveresulttexture">Save Result Texture</h2>
+            <p></p>
+            <span class="codequote">private void SaveResultToFile(PaintManager paintManager, string fileName)
+{
+    var texture2D = paintManager.GetResultTexture();
+    var pngData = texture2D.EncodeToPNG();
+    if (pngData != null)
+    {
+        var filePath = System.IO.Path.Combine(Application.persistentDataPath, fileName);
+        System.IO.File.WriteAllBytes(filePath, pngData);
+    }
+}</span><br>
+
+            <h2 id="loadfromtexture">Load From Texture</h2>
+            <span class="codequote">public void LoadResultTextureFromFile(PaintManager paintManager, string fileName)
+    {
+        var filePath = System.IO.Path.Combine(Application.persistentDataPath, fileName);
+        var textureData = System.IO.File.ReadAllBytes(filePath);
+        var texture = new Texture2D(1, 1);
+        texture.LoadImage(textureData);
+        var shaderTextureName = paintManager.Material.ShaderTextureName;
+        var previousTexture = paintManager.Material.SourceMaterial.GetTexture(shaderTextureName);
+        paintManager.Material.SourceMaterial.SetTexture(shaderTextureName, texture);
+        var spriteRenderer = paintManager.ObjectForPainting.GetComponent&lt;SpriteRenderer&gt;();
+        if (spriteRenderer != null)
+        {
+            var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
+        var rawImage = paintManager.ObjectForPainting.GetComponent&lt;RawImage&gt;();
+        if (rawImage != null)
+        {
+            rawImage.texture = texture;
+        }
+        <span class="comment">//copy texture to new layer:</span>
+        paintManager.CopySourceTextureToLayer = true;
+        <span class="comment">//copy texture to background layer:</span>
+        <span class="comment">//paintManager.UseSourceTextureAsBackground = true;</span>
+        paintManager.Init();
+        paintManager.Material.SourceMaterial.SetTexture(shaderTextureName, previousTexture);
+}</span><br>
+
+            <h2 id="addnewlayer">Add a new layer</h2>
+            <span class="codequote">var layerName = "SomeLayerName";
+paintManager.LayersController.AddNewLayer(layerName);</span>
+            <p>In case you need to create a layer from the existing texture:</p>
+            <span class="codequote">var layerName = "SomeLayerName";
+var layerTexture = ... <span class="comment">//reference to Texture2D, note that the Texture dimensions must be as the source texture</span>
+paintManager.LayersController.AddNewLayer(layerName, layerTexture);</span><br>
+
+            <h2 id="removelayer">Remove layer</h2>
+            <span class="codequote">var layerIndex = 0;
+paintManager.LayersController.RemoveLayer(layerIndex);</span><br>
+
+            <h2 id="drawfromcode">Drawing from code</h2>
+            <p>&emsp;Asset supports drawing from code. To draw in the texture space, invoke one of these methods:<br>
+                <span class="codequote"><span class="comment">// draw a point where argument - position on the texture</span>
+paintManager.PaintObject.DrawPoint(new Vector3(512, 512));
+
+<span class="comment">// draw a line where arguments - start and end position on the texture</span>
+paintManager.PaintObject.DrawLine(new Vector2(400, 612), new Vector2(100, 100));</span><br>
+                To draw in screen space for <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>/<a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a> components you need to invoke these methods:<br>
+<span class="codequote"><span class="comment">// screen position in pixels</span>
+var screenPos = new Vector3(...);
+var ray = Camera.main.ScreenPointToRay(screenPos);
+RaycastController.Instance.Raycast(ray, out var triangle);
+<span class="comment">// then use methods for painting:</span>
+paintManager.PaintObject.OnMouseDown(screenPos, 1f, triangle);
+paintManager.PaintObject.OnMouseButton(screenPos, 1f, triangle);
+paintManager.PaintObject.OnMouseUp(screenPos, 1f, triangle);</span><br>
+                To draw in screen space for <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a>/<a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-RawImage.html" target="_blank">RawImage</a>
+                components you need to invoke methods for painting:<br>
+                <span class="codequote"><span class="comment">// screen position in pixels</span>
+var screenPos = new Vector3(…);
+<span class="comment">// then use methods for painting:</span>
+paintManager.PaintObject.OnMouseDown(screenPos);
+paintManager.PaintObject.OnMouseButton(screenPos);
+paintManager.PaintObject.OnMouseUp(screenPos);</span><br>
+            </p>
+            <h1 id="paintmanagerfromcode">Creating PaintManager from code</h1>
+            <p>&emsp;<mark>PaintManager</mark> can be created from code. Here is an example of creating
+                <mark>PaintManager</mark> using this method:<br>
+<span class="codequote">public void AddPaintManager(GameObject objectForPainting, Material material, string shaderTextureName = "_MainTex", TrianglesContainer triangles = null)
+{
+    var paintManager = objectForPainting.AddComponent&lt;PaintManager&gt;();
+    paintManager.ObjectForPainting = objectForPainting;
+    paintManager.Material.SourceMaterial = material;
+    paintManager.Material.ShaderTextureName = shaderTextureName;
+    if (objectForPainting.GetComponent&lt;MeshRenderer&gt;() != null || objectForPainting.GetComponent&lt;SkinnedMeshRenderer&gt;() != null)
+    {
+        paintManager.SetTriangles(triangles);
+    }
+    paintManager.Init();
+}</span><br>
+                &emsp;<mark>PaintManager</mark> can be re-initialized with one line of code. Note that afterward,
+                previously created resources (RenderTextures, Meshes, Materials) will be re-created:<br>
+                <span class="codequote">paintManager.Init();</span><br>
+                &emsp;Change the texture for the painting using code:<br>
+                <span class="codequote">public void ChangeTexture(Texture texture)
+{
+    var material = paintManager.Material.SourceMaterial;
+    material.SetTexture(paintManager.Material.ShaderTextureName, texture);
+    paintManager.Material.SourceMaterial = material;
+    paintManager.Init();
+}</span><br>
+            </p>
+
+            <h1 id="vrsupport">VR Support</h1>
+            <p>&emsp;«2D/3D Paint» supports work with VR. Asset uses <a href="https://docs.unity3d.com/Manual/XR.html" target="_blank">Unity XR System</a> and support for any other VR plugins can be easily implemented and require minimal code changes to properly work with VR input devices.<br>
+                To enable VR support, perform the following steps:
+            <li>
+                Select <span class="path">XDPaintSettings</span> asset (<span class="path">Assets/XDPaint/Resources/XDPaintSettings.asset</span>). In the Inspector tab, check <span class="path">Is VR Mode</span>. This action will add <a href="https://docs.unity3d.com/Manual/PlatformDependentCompilation.html" target="_blank">define</a> «XDPAINT_VR_ENABLE» for the current platform:
+                <div class="images"><img class="center2" src="images/settings_vr.png" alt="VR Settings" onload="this.width/=2;">
+                    <img class="center2" src="images/define.png" alt="VR Define" onload="this.width/=2;"></div>
+                Alternatively, you can uncomment the first line of <mark>InputController</mark> (#define XDPAINT_VR_ENABLE).<br>
+            <li>
+                <i>(Optional)</i> Configure VR input devices in <mark>InputController.InitVR()</mark> method, current body of the method can be replaced;<br>
+            </li>
+            <li>
+                <i>(Optional)</i> Replace XR input line in <mark>InputController</mark> to change VR input trigger for painting, as an
+                example:<br>
+            </li>
+            <span class="codequote"><span class="comment">//next line can be changed for VR device input</span>
+if (leftHandedControllers.Count > 0 && leftHandedControllers[0].TryGetFeatureValue(<b>CommonUsages.triggerButton</b>, out var triggerValue) && triggerValue)</span>
+            Replace it with:<br>
+            <span class="codequote"><span class="comment">//next line can be changed for VR device input</span>
+if (leftHandedControllers.Count > 0 && leftHandedControllers[0].TryGetFeatureValue(<b>CommonUsages.primaryButton</b>, out var triggerValue) && triggerValue)</span>
+            <li>Set <span class="path">Pen Transform</span> as your pen in the <mark>InputController</mark> component.</li>
+            That’s all! Your VR device is ready to paint!
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="tips">Tips</h1>
+            <p>&emsp;Here are some tips that will help in its configuration and use «2D/3D Paint»:</p>
+            <span class="justified">
+                <li>To disable the rounding of the brush, set the <span class="path">Brush.Hardness</span> parameter to 1;</li>
+                <li>Use the <span class="path">Use Neighbors Vertices For Raycasts</span> for <mark>PaintManager</mark> if it is possible. Using this flag allows you to draw lines for objects such as <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a> and <a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a> using less CPU time, but there may be inaccuracies with painting on non-convex objects. Please note that the generation of data may take a few seconds and depends on the count of vertices;</li>
+                <li>Field <span class="path">Triangles</span> of <mark>PaintManager</mark> contains data about the model's vertices.
+                    Data can take up disk space and contain:<br>
+                <ul><li>The indices of vertices;</li>
+                <li>The number (ID) of the triangle;</li>
+                <li>The indices of the vertices of the neighboring triangles.</li></ul>
+                    Use the context menu to add and/or delete data. If you set the flag <span class="path">Use Neighbors Vertices For Raycasts</span> to false, it will delete the data of neighboring triangles. The triangles data field is hidden in Inspector but can be displayed using <a href="https://docs.unity3d.com/Manual/InspectorOptions.html" target="_blank">Debug mode</a> in the Inspector window of Unity Editor;</li>
+                <li>«2D/3D Paint» supports <a href="https://docs.unity3d.com/Manual/universal-render-pipeline.html" target="_blank">Universal Render Pipeline (URP)</a> / <a href="https://docs.unity3d.com/Manual/high-definition-render-pipeline.html" target="_blank">High Definition Render Pipeline (HDRP)</a>, for pipeline-compatible shaders for objects for painting;</li>
+                <li>To paint on Sprite with transparent areas, use Material with Shader <span class="path">XD Paint/Alpha Mask</span> and set Texture as <span class="path">Main Texture</span> and <span class="path">Mask Texture</span>:</li>
+                <img class="center" src="images/alphaMaskShader.png" alt="Alpha Mask shader" onload="this.width/=2;"></span>
+                After, choose the Shader Texture Name as <span class="path">_MainTex</span>:
+                <span class="justified"><img class="center" src="images/shaderTextureName.png" alt="Shader Texture name" onload="this.width/=2;"><br>
+                    <li>If you use Skinned Mesh for painting, it is recommended to use default transforms: root animation and mesh objects position as 0:0:0, rotation as 0:0:0, and scale 1:1:1:</li></span>
+
+                        <img class="center" src="images/skinnedTransform1.png" alt="Blender export settings" onload="this.width/=2;">
+                        <img class="center" src="images/skinnedTransform2.png" alt="Blender export settings" onload="this.width/=2;"><br>
+
+                <span class="justified"><li>You can clear triangles data for <span class="path">PaintObject</span> that works with <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>/<a href="https://docs.unity3d.com/ScriptReference/SkinnedMeshRenderer.html" target="_blank">SkinnedMeshRenderer</a> and add triangles data again using ContextMenu:</li></span>
+                <div class="images">
+                <img class="center2" src="images/td_1.png" alt="Clear Triangles Data" onload="this.width/=2;">
+                <img class="center2" src="images/td_2.png" alt="Fill Triangles Data" onload="this.width/=2;"></div><br>
+                <img class="center" src="images/td_3.png" alt="Triangles Data Window" onload="this.width/=2;">
+            <br>
+
+
+            <span class="justified"><li>To work with pixel art graphics, set <span class="path">Filter Mode</span> to Point in <mark>PaintController</mark> and <mark>PaintManager</mark> components, and set <span class="path">BrushDuplicatePartWidth</span> to 1 in <a class="section" href="#settings">Settings</a>:</li></span>
+            <div class="images">
+                <img class="center2" src="images/paintController_point.png" alt="PaintController Point Filter Mode" onload="this.width/=2;">
+                <img class="center2" src="images/paintManager_point.png" alt="PaintManager Point Filter Mode" onload="this.width/=2;">
+            </div><br>
+                <img class="center" src="images/settings_point.png" alt="Setting Point Mode" onload="this.width/=2;">
+
+            <h1 id="contacts">Contacts</h1>
+            Please let me know if you have any questions, ideas, or suggestions.<br>
+            E-mail: <a href="mailto:unitymedved@gmail.com">unitymedved@gmail.com</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
